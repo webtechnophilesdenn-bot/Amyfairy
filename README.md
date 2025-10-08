@@ -256,7 +256,7 @@ graph TD
 ### Installation
 
 ```bash
-git clone https://github.com/username/be-a-guptaji-e-commerce.git
+https://github.com/webtechnophilesdenn-bot/Amyfairy.git
 cd be-a-guptaji-e-commerce
 ```
 
