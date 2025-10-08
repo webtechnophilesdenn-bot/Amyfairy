@@ -31,53 +31,7 @@ This project was built with **React, Node.js, Express, MongoDB, and TailwindCSS*
 
 ---
 
-## 📸 Screenshots
 
-### Login Page
-
-![Login](https://vbjgcpip2m.ufs.sh/f/LZ1PZKgs97f8G6aaF2XD9HfFokpC5Uiu81RZOJSXT03lBr6a)
-
-### Sign Up Page
-
-![Sign Up](https://vbjgcpip2m.ufs.sh/f/LZ1PZKgs97f8jC32UwaV5bcxdFN7DCJo8SIaZvuqU6RKk34B)
-
-### DashBoard
-
-![DashBoard](https://vbjgcpip2m.ufs.sh/f/LZ1PZKgs97f82ANXKIrRDxGkU0cYziCyw9tT4ZMeOgS6Xhuo)
-
-### Product Detail Page
-
-![Product Detail](https://vbjgcpip2m.ufs.sh/f/LZ1PZKgs97f8BYwYibUhcA5U8nJEqjyzZdPF9lTG0Lspbw6O)
-
-### Cart Page
-
-![Cart](https://vbjgcpip2m.ufs.sh/f/LZ1PZKgs97f8x5g1aQLQzMnfUSBK3mjhu5rGy7Id60oFecvV)
-
-### Checkout Page
-
-![Checkout](https://vbjgcpip2m.ufs.sh/f/LZ1PZKgs97f81hgVbH6WtR4sJMTBlgSf3oENpVbKerUZmcFw)
-
-### Order Success Page
-
-![Success](https://vbjgcpip2m.ufs.sh/f/LZ1PZKgs97f8gMFHeEIoQHws1inB9EJFv7lzqOr0PmM53VS6)
-
-### Order List Page
-
-![List](https://vbjgcpip2m.ufs.sh/f/LZ1PZKgs97f8tSYEpcs0WaUub23l7odet1nCVEXrmfYykSB6)
-
-### Profile Page
-
-![Profile](https://vbjgcpip2m.ufs.sh/f/LZ1PZKgs97f8Tg4qelAxxCvAjozQwFBVgLUsyDfheZP5iYHI)
-
-### Admin Dashboard
-
-![Admin DashBoard](https://vbjgcpip2m.ufs.sh/f/LZ1PZKgs97f8Y6u0jEi8EfpZDFQ45wYmgxuWiXPbaSHLK27s)
-
-### Order Detail Page
-
-![Detail](https://vbjgcpip2m.ufs.sh/f/LZ1PZKgs97f8txZZE2s0WaUub23l7odet1nCVEXrmfYykSB6)
-
----
 
 ## 📁 Directory Structure
 
