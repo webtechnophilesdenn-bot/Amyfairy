@@ -108,7 +108,7 @@ export default function ProductList() {
   }, [dispatch]);
 
   return (
-    <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-pink-100 min-h-screen">
+    <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-pink-100 min-h-screen ">
 
       <div>
         <MobileFilter
@@ -182,7 +182,7 @@ export default function ProductList() {
               {/* Mobile Filter Button */}
               <button
                 type="button"
-                className="lg:hidden rounded-lg sm:rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 p-2 sm:p-2.5 md:p-3 text-white shadow-md hover:shadow-xl hover:from-purple-600 hover:to-pink-600 transition-all duration-300 hover:scale-110 flex-shrink-0"
+                className=" lg:hidden rounded-lg sm:rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 p-2 sm:p-2.5 md:p-3 text-white shadow-md hover:shadow-xl hover:from-purple-600 hover:to-pink-600 transition-all duration-300 hover:scale-110 flex-shrink-0"
                 onClick={() => setMobileFiltersOpen(true)}
               >
                 <FunnelIcon className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
@@ -261,7 +261,7 @@ function MobileFilter({
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
-            <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs sm:max-w-sm flex-col overflow-y-auto bg-gradient-to-br from-purple-50 to-pink-50 py-4 pb-12 shadow-2xl">
+            <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs sm:max-w-sm flex-col overflow-y-auto bg-gradient-to-br from-purple-50 to-pink-50 py-4 pb-12 shadow-2xl pt-[5rem] ">
               <div className="flex items-center justify-between px-4 sm:px-5 mb-4 sm:mb-6">
                 <h2 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                   Filters

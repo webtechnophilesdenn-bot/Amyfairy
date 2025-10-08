@@ -1,3 +1,5 @@
+
+//productAPI.js
 import { PATH } from "../../app/constants";
 
 export function fetchProductById(id) {

@@ -283,8 +283,8 @@ function MobileFilter({
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
-            <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs sm:max-w-sm flex-col overflow-y-auto bg-gradient-to-br from-purple-50 to-pink-50 py-4 pb-12 shadow-2xl">
-              <div className="flex items-center justify-between px-4 sm:px-5 mb-4 sm:mb-6">
+            <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs sm:max-w-sm flex-col overflow-y-auto bg-gradient-to-br from-purple-50 to-pink-50 py-4 pb-12 shadow-2xl ">
+              <div className="flex items-center justify-between px-4 sm:px-5 mb-4 sm:mb-6 ">
                 <h2 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                   Filters
                 </h2>
@@ -297,7 +297,7 @@ function MobileFilter({
                 </button>
               </div>
 
-              <form className="mt-2 sm:mt-4">
+              <form className="mt-2 sm:mt-4 ">
                 {filters.map((section) => (
                   <Disclosure
                     as="div"
