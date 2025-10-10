@@ -1,4 +1,4 @@
-// ProductForm.js
+// ProductForm.js - Mobile Responsive Version
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -20,9 +20,9 @@ import { useEffect, useState } from "react";
 import Modal from "../../common/components/Modal";
 import { ToastContainer, toast } from "react-toastify";
 
-// Cloudinary Configuration - YOUR CREDENTIALS
-const CLOUDINARY_UPLOAD_PRESET = "abcdefg"; // You may need to create an unsigned upload preset
-const CLOUDINARY_CLOUD_NAME = "djgt3sn5w";
+// Cloudinary Configuration
+const CLOUDINARY_UPLOAD_PRESET = "abcdefg";
+const CLOUDINARY_CLOUD_NAME = "dbwdqp8wm";
 
 function ProductForm() {
   const dispatch = useDispatch();
@@ -316,74 +316,71 @@ function ProductForm() {
     setOpenModal("");
   }, [Object.keys(errors).length]);
 
- 
-// Replace your ImageUploadSection component with this fixed version:
-
-const ImageUploadSection = ({ fieldName, label }) => (
-  <div className="space-y-3">
-    <label className="block text-sm font-bold text-purple-900">
-      {label}
-    </label>
-    
-    {imagePreviews[fieldName] ? (
-      <div className="relative group">
-        <img
-          src={imagePreviews[fieldName]}
-          alt={label}
-          className="w-full h-40 object-cover rounded-2xl border-2 border-purple-300 shadow-lg hover:shadow-xl transition-all duration-300"
-        />
-        <button
-          type="button"
-          onClick={() => removeImage(fieldName)}
-          className="absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all shadow-lg hover:scale-110"
-        >
-          <XMarkIcon className="h-4 w-4" />
-        </button>
-      </div>
-    ) : (
-      <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-purple-300 rounded-2xl cursor-pointer bg-gradient-to-br from-pink-50 via-purple-50 to-pink-50 hover:border-purple-400 hover:shadow-lg transition-all duration-300">
-        <div className="flex flex-col items-center justify-center pt-4 pb-5">
-          {uploadingImage[fieldName] ? (
-            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-600"></div>
-          ) : (
-            <>
-              <PhotoIcon className="h-10 w-10 text-purple-400 mb-2" />
-              <p className="text-xs text-purple-600 font-semibold">
-                Click to upload
-              </p>
-              <p className="text-xs text-purple-400">MAX 10MB</p>
-            </>
-          )}
-        </div>
-        <input
-          type="file"
-          className="hidden"
-          accept="image/*"
-          onChange={(e) => handleImageUpload(e, fieldName)}
-          disabled={uploadingImage[fieldName]}
-        />
+  const ImageUploadSection = ({ fieldName, label }) => (
+    <div className="space-y-2 sm:space-y-3">
+      <label className="block text-xs sm:text-sm font-bold text-purple-900">
+        {label}
       </label>
-    )}
-    
-    {/* FIX: Add value prop with empty string fallback */}
-    <input
-      type="text"
-      {...register(fieldName, {
-        required: `${label} is required`,
-      })}
-      value={getValues(fieldName) || ""} // ✅ This fixes the warning
-      onChange={(e) => setValue(fieldName, e.target.value)} // ✅ Handle onChange properly
-      placeholder="Or paste image URL"
-      className="w-full px-3 py-2 text-sm border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200 text-gray-700 placeholder-purple-300"
-    />
-    
-    {errors[fieldName] && (
-      <p className="text-xs text-pink-600 font-semibold">
-        {errors[fieldName].message}
-      </p>
-    )}
-  </div>
-);
+      
+      {imagePreviews[fieldName] ? (
+        <div className="relative group">
+          <img
+            src={imagePreviews[fieldName]}
+            alt={label}
+            className="w-full h-32 sm:h-40 object-cover rounded-xl sm:rounded-2xl border-2 border-purple-300 shadow-lg hover:shadow-xl transition-all duration-300"
+          />
+          <button
+            type="button"
+            onClick={() => removeImage(fieldName)}
+            className="absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white p-1.5 sm:p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all shadow-lg hover:scale-110"
+          >
+            <XMarkIcon className="h-3 w-3 sm:h-4 sm:w-4" />
+          </button>
+        </div>
+      ) : (
+        <label className="flex flex-col items-center justify-center w-full h-32 sm:h-40 border-2 border-dashed border-purple-300 rounded-xl sm:rounded-2xl cursor-pointer bg-gradient-to-br from-pink-50 via-purple-50 to-pink-50 hover:border-purple-400 hover:shadow-lg transition-all duration-300">
+          <div className="flex flex-col items-center justify-center pt-3 pb-4 sm:pt-4 sm:pb-5">
+            {uploadingImage[fieldName] ? (
+              <div className="animate-spin rounded-full h-8 w-8 sm:h-10 sm:w-10 border-b-2 border-purple-600"></div>
+            ) : (
+              <>
+                <PhotoIcon className="h-8 w-8 sm:h-10 sm:w-10 text-purple-400 mb-2" />
+                <p className="text-[10px] sm:text-xs text-purple-600 font-semibold">
+                  Click to upload
+                </p>
+                <p className="text-[10px] sm:text-xs text-purple-400">MAX 10MB</p>
+              </>
+            )}
+          </div>
+          <input
+            type="file"
+            className="hidden"
+            accept="image/*"
+            onChange={(e) => handleImageUpload(e, fieldName)}
+            disabled={uploadingImage[fieldName]}
+          />
+        </label>
+      )}
+      
+      <input
+        type="text"
+        {...register(fieldName, {
+          required: `${label} is required`,
+        })}
+        value={getValues(fieldName) || ""}
+        onChange={(e) => setValue(fieldName, e.target.value)}
+        placeholder="Or paste image URL"
+        className="w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border-2 border-purple-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200 text-gray-700 placeholder-purple-300"
+      />
+      
+      {errors[fieldName] && (
+        <p className="text-[10px] sm:text-xs text-pink-600 font-semibold">
+          {errors[fieldName].message}
+        </p>
+      )}
+    </div>
+  );
+
   return (
     <>
       <ToastContainer
@@ -399,7 +396,7 @@ const ImageUploadSection = ({ fieldName, label }) => (
         theme="colored"
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-pink-200 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-pink-200 py-4 sm:py-6 lg:py-8 px-3 sm:px-4 lg:px-8">
         <form
           noValidate
           onSubmit={handleSubmit((data) => {
@@ -516,45 +513,45 @@ const ImageUploadSection = ({ fieldName, label }) => (
             ></Modal>
           )}
 
-          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-purple-200">
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border-2 border-purple-200">
             {/* Header */}
-            <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-pink-600 px-8 py-6 relative overflow-hidden">
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 h-32 w-32 rounded-full bg-white opacity-10"></div>
-              <div className="absolute bottom-0 left-0 -mb-4 -ml-4 h-24 w-24 rounded-full bg-white opacity-10"></div>
-              <div className="relative flex items-center gap-3">
-                <SparklesIcon className="h-8 w-8 text-white" />
+            <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-pink-600 px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 relative overflow-hidden">
+              <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 sm:h-32 sm:w-32 rounded-full bg-white opacity-10"></div>
+              <div className="absolute bottom-0 left-0 -mb-4 -ml-4 h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-white opacity-10"></div>
+              <div className="relative flex items-center gap-2 sm:gap-3">
+                <SparklesIcon className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-white flex-shrink-0" />
                 <div>
-                  <h2 className="text-3xl font-bold text-white">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
                     {params.id ? "Edit Product" : "Add New Product"}
                   </h2>
-                  <p className="text-pink-100 mt-1">Fill in the details below</p>
+                  <p className="text-pink-100 mt-0.5 sm:mt-1 text-xs sm:text-sm">Fill in the details below</p>
                 </div>
               </div>
             </div>
 
             {/* TWO COLUMN LAYOUT */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 lg:p-8">
               
               {/* LEFT COLUMN */}
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {selectedProduct?.deleted && (
-                  <div className="bg-pink-100 border-l-4 border-pink-500 p-4 rounded-xl">
-                    <p className="text-pink-700 font-bold">
+                  <div className="bg-pink-100 border-l-4 border-pink-500 p-3 sm:p-4 rounded-xl">
+                    <p className="text-pink-700 font-bold text-xs sm:text-sm">
                       ⚠️ This product is deleted
                     </p>
                   </div>
                 )}
 
                 {/* Basic Information */}
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl shadow-md">
-                  <h3 className="text-lg font-bold text-purple-900 mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-md">
+                  <h3 className="text-base sm:text-lg font-bold text-purple-900 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full"></span>
                     Basic Information
                   </h3>
 
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     <div>
-                      <label className="block text-sm font-bold text-purple-900 mb-2">
+                      <label className="block text-xs sm:text-sm font-bold text-purple-900 mb-1.5 sm:mb-2">
                         Product Name
                       </label>
                       <input
@@ -562,18 +559,18 @@ const ImageUploadSection = ({ fieldName, label }) => (
                         {...register("title", {
                           required: "Name is required",
                         })}
-                        className="w-full px-4 py-2.5 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
+                        className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border-2 border-purple-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
                         placeholder="Enter product name"
                       />
                       {errors.title && (
-                        <p className="mt-1 text-sm text-pink-600 font-semibold">
+                        <p className="mt-1 text-xs sm:text-sm text-pink-600 font-semibold">
                           {errors.title.message}
                         </p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-sm font-bold text-purple-900 mb-2">
+                      <label className="block text-xs sm:text-sm font-bold text-purple-900 mb-1.5 sm:mb-2">
                         Description
                       </label>
                       <textarea
@@ -581,11 +578,11 @@ const ImageUploadSection = ({ fieldName, label }) => (
                           required: "Description is required",
                         })}
                         rows={3}
-                        className="w-full px-4 py-2.5 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
+                        className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border-2 border-purple-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
                         placeholder="Write a detailed description..."
                       />
                       {errors.description && (
-                        <p className="mt-1 text-sm text-pink-600 font-semibold">
+                        <p className="mt-1 text-xs sm:text-sm text-pink-600 font-semibold">
                           {errors.description.message}
                         </p>
                       )}
@@ -594,20 +591,20 @@ const ImageUploadSection = ({ fieldName, label }) => (
                 </div>
 
                 {/* Brand & Category */}
-                <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-2xl shadow-md">
-                  <h3 className="text-lg font-bold text-purple-900 mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
+                <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-md">
+                  <h3 className="text-base sm:text-lg font-bold text-purple-900 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-pink-500 rounded-full"></span>
                     Brand & Category
                   </h3>
 
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     <div>
-                      <label className="block text-sm font-bold text-purple-900 mb-2">
+                      <label className="block text-xs sm:text-sm font-bold text-purple-900 mb-1.5 sm:mb-2">
                         Brand
                       </label>
                       <div className="flex gap-2">
                         <select
-                          className="flex-1 px-4 py-2.5 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200 bg-white"
+                          className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border-2 border-purple-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200 bg-white"
                           {...register("brand", {
                             required: "Brand is required",
                           })}
@@ -621,26 +618,26 @@ const ImageUploadSection = ({ fieldName, label }) => (
                         </select>
                         <button
                           type="button"
-                          className="px-4 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 shadow-md hover:shadow-lg"
+                          className="px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg sm:rounded-xl font-bold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 shadow-md hover:shadow-lg whitespace-nowrap"
                           onClick={() => setOpenModal("addBrand")}
                         >
                           Add
                         </button>
                       </div>
                       {errors.brand && (
-                        <p className="mt-1 text-sm text-pink-600 font-semibold">
+                        <p className="mt-1 text-xs sm:text-sm text-pink-600 font-semibold">
                           {errors.brand.message}
                         </p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-sm font-bold text-purple-900 mb-2">
+                      <label className="block text-xs sm:text-sm font-bold text-purple-900 mb-1.5 sm:mb-2">
                         Category
                       </label>
                       <div className="flex gap-2">
                         <select
-                          className="flex-1 px-4 py-2.5 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200 bg-white"
+                          className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border-2 border-purple-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200 bg-white"
                           {...register("category", {
                             required: "Category is required",
                           })}
@@ -654,14 +651,14 @@ const ImageUploadSection = ({ fieldName, label }) => (
                         </select>
                         <button
                           type="button"
-                          className="px-4 py-2.5 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl font-bold hover:from-pink-600 hover:to-purple-600 transition-all duration-200 shadow-md hover:shadow-lg"
+                          className="px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg sm:rounded-xl font-bold hover:from-pink-600 hover:to-purple-600 transition-all duration-200 shadow-md hover:shadow-lg whitespace-nowrap"
                           onClick={() => setOpenModal("addCategory")}
                         >
                           Add
                         </button>
                       </div>
                       {errors.category && (
-                        <p className="mt-1 text-sm text-pink-600 font-semibold">
+                        <p className="mt-1 text-xs sm:text-sm text-pink-600 font-semibold">
                           {errors.category.message}
                         </p>
                       )}
@@ -670,15 +667,15 @@ const ImageUploadSection = ({ fieldName, label }) => (
                 </div>
 
                 {/* Pricing & Stock */}
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl shadow-md">
-                  <h3 className="text-lg font-bold text-purple-900 mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-md">
+                  <h3 className="text-base sm:text-lg font-bold text-purple-900 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full"></span>
                     Pricing & Stock
                   </h3>
 
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-4">
                     <div>
-                      <label className="block text-sm font-bold text-purple-900 mb-2">
+                      <label className="block text-[10px] sm:text-xs lg:text-sm font-bold text-purple-900 mb-1.5 sm:mb-2">
                         Price ($)
                       </label>
                       <input
@@ -687,18 +684,18 @@ const ImageUploadSection = ({ fieldName, label }) => (
                           required: "Price is required",
                           min: 1,
                         })}
-                        className="w-full px-4 py-2.5 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
+                        className="w-full px-2 sm:px-3 lg:px-4 py-2 sm:py-2.5 text-sm sm:text-base border-2 border-purple-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
                         placeholder="0.00"
                       />
                       {errors.price && (
-                        <p className="mt-1 text-xs text-pink-600 font-semibold">
+                        <p className="mt-1 text-[10px] sm:text-xs text-pink-600 font-semibold">
                           {errors.price.message}
                         </p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-sm font-bold text-purple-900 mb-2">
+                      <label className="block text-[10px] sm:text-xs lg:text-sm font-bold text-purple-900 mb-1.5 sm:mb-2">
                         Discount (%)
                       </label>
                       <input
@@ -708,18 +705,18 @@ const ImageUploadSection = ({ fieldName, label }) => (
                           min: 0,
                           max: 100,
                         })}
-                        className="w-full px-4 py-2.5 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
+                        className="w-full px-2 sm:px-3 lg:px-4 py-2 sm:py-2.5 text-sm sm:text-base border-2 border-purple-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
                         placeholder="0"
                       />
                       {errors.discountPercentage && (
-                        <p className="mt-1 text-xs text-pink-600 font-semibold">
+                        <p className="mt-1 text-[10px] sm:text-xs text-pink-600 font-semibold">
                           {errors.discountPercentage.message}
                         </p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-sm font-bold text-purple-900 mb-2">
+                      <label className="block text-[10px] sm:text-xs lg:text-sm font-bold text-purple-900 mb-1.5 sm:mb-2">
                         Stock
                       </label>
                       <input
@@ -728,11 +725,11 @@ const ImageUploadSection = ({ fieldName, label }) => (
                           required: "Stock is required",
                           min: 1,
                         })}
-                        className="w-full px-4 py-2.5 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
+                        className="w-full px-2 sm:px-3 lg:px-4 py-2 sm:py-2.5 text-sm sm:text-base border-2 border-purple-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
                         placeholder="0"
                       />
                       {errors.stock && (
-                        <p className="mt-1 text-xs text-pink-600 font-semibold">
+                        <p className="mt-1 text-[10px] sm:text-xs text-pink-600 font-semibold">
                           {errors.stock.message}
                         </p>
                       )}
@@ -741,13 +738,13 @@ const ImageUploadSection = ({ fieldName, label }) => (
                 </div>
 
                 {/* Product Highlights */}
-                <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-2xl shadow-md">
-                  <h3 className="text-lg font-bold text-purple-900 mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
+                <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-md">
+                  <h3 className="text-base sm:text-lg font-bold text-purple-900 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-pink-500 rounded-full"></span>
                     Product Highlights
                   </h3>
 
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     {[1, 2, 3, 4].map((num) => (
                       <div key={num}>
                         <input
@@ -755,7 +752,7 @@ const ImageUploadSection = ({ fieldName, label }) => (
                           {...register(`highlight${num}`, {
                             required: "Highlight is required",
                           })}
-                          className="w-full px-4 py-2.5 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
+                          className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border-2 border-purple-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
                           placeholder={`Highlight ${num}`}
                         />
                         {errors[`highlight${num}`] && (
@@ -770,46 +767,46 @@ const ImageUploadSection = ({ fieldName, label }) => (
               </div>
 
               {/* RIGHT COLUMN */}
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 
                 {/* Colors & Sizes */}
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl shadow-md">
-                  <h3 className="text-lg font-bold text-purple-900 mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-md">
+                  <h3 className="text-base sm:text-lg font-bold text-purple-900 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full"></span>
                     Colors & Sizes
                   </h3>
 
                   {/* Colors */}
-                  <div className="mb-6">
-                    <label className="block text-sm font-bold text-purple-900 mb-3">
+                  <div className="mb-4 sm:mb-6">
+                    <label className="block text-xs sm:text-sm font-bold text-purple-900 mb-2 sm:mb-3">
                       Add Color
                     </label>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
                       <input
                         type="color"
                         value={newColor}
                         onChange={(e) => setNewColor(e.target.value)}
-                        className="w-14 h-14 rounded-xl cursor-pointer border-4 border-white shadow-lg"
+                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl cursor-pointer border-4 border-white shadow-lg"
                       />
                       <button
                         type="button"
                         onClick={handleAddColor}
-                        className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 shadow-md hover:shadow-lg"
+                        className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg sm:rounded-xl font-bold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 shadow-md hover:shadow-lg"
                       >
                         Add Color
                       </button>
                     </div>
 
                     {getValues("colors").length > 0 && (
-                      <div className="mt-4">
-                        <div className="flex flex-wrap gap-3">
+                      <div className="mt-3 sm:mt-4">
+                        <div className="flex flex-wrap gap-2 sm:gap-3">
                           {getValues("colors").map((color, index) => (
                             <div
                               key={index}
-                              className="flex flex-col items-center gap-2"
+                              className="flex flex-col items-center gap-1.5 sm:gap-2"
                             >
                               <div
-                                className="w-12 h-12 rounded-full border-4 border-white shadow-lg"
+                                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-4 border-white shadow-lg"
                                 style={{ backgroundColor: color }}
                               ></div>
                               <button
@@ -817,7 +814,7 @@ const ImageUploadSection = ({ fieldName, label }) => (
                                 onClick={() => handleRemoveColor(index)}
                                 className="p-1 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-colors"
                               >
-                                <TrashIcon className="h-3 w-3" />
+                                <TrashIcon className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                               </button>
                             </div>
                           ))}
@@ -825,7 +822,7 @@ const ImageUploadSection = ({ fieldName, label }) => (
                       </div>
                     )}
                     {errors.colors && (
-                      <p className="mt-2 text-sm text-pink-600 font-semibold">
+                      <p className="mt-2 text-xs sm:text-sm text-pink-600 font-semibold">
                         {errors.colors.message}
                       </p>
                     )}
@@ -833,35 +830,35 @@ const ImageUploadSection = ({ fieldName, label }) => (
 
                   {/* Sizes */}
                   <div>
-                    <label className="block text-sm font-bold text-purple-900 mb-3">
+                    <label className="block text-xs sm:text-sm font-bold text-purple-900 mb-2 sm:mb-3">
                       Add Size (inches)
                     </label>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
                       <input
                         type="number"
                         value={newSize}
                         onChange={(e) => setNewSize(e.target.value)}
-                        className="w-24 px-4 py-3 border-2 border-purple-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
+                        className="w-20 sm:w-24 px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border-2 border-purple-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-200"
                         placeholder="Size"
                       />
                       <button
                         type="button"
                         onClick={handleAddSize}
-                        className="flex-1 px-4 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl font-bold hover:from-pink-600 hover:to-purple-600 transition-all duration-200 shadow-md hover:shadow-lg"
+                        className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg sm:rounded-xl font-bold hover:from-pink-600 hover:to-purple-600 transition-all duration-200 shadow-md hover:shadow-lg"
                       >
                         Add Size
                       </button>
                     </div>
 
                     {getValues("sizes").length > 0 && (
-                      <div className="mt-4">
-                        <div className="flex flex-wrap gap-3">
+                      <div className="mt-3 sm:mt-4">
+                        <div className="flex flex-wrap gap-2 sm:gap-3">
                           {getValues("sizes").map((size, index) => (
                             <div
                               key={index}
-                              className="flex flex-col items-center gap-2"
+                              className="flex flex-col items-center gap-1.5 sm:gap-2"
                             >
-                              <div className="px-5 py-2 bg-white border-2 border-purple-300 rounded-xl font-bold text-purple-700 shadow-md">
+                              <div className="px-4 sm:px-5 py-1.5 sm:py-2 text-sm sm:text-base bg-white border-2 border-purple-300 rounded-lg sm:rounded-xl font-bold text-purple-700 shadow-md">
                                 {size}"
                               </div>
                               <button
@@ -869,7 +866,7 @@ const ImageUploadSection = ({ fieldName, label }) => (
                                 onClick={() => handleRemoveSize(index)}
                                 className="p-1 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-colors"
                               >
-                                <TrashIcon className="h-3 w-3" />
+                                <TrashIcon className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                               </button>
                             </div>
                           ))}
@@ -877,7 +874,7 @@ const ImageUploadSection = ({ fieldName, label }) => (
                       </div>
                     )}
                     {errors.sizes && (
-                      <p className="mt-2 text-sm text-pink-600 font-semibold">
+                      <p className="mt-2 text-xs sm:text-sm text-pink-600 font-semibold">
                         {errors.sizes.message}
                       </p>
                     )}
@@ -885,13 +882,13 @@ const ImageUploadSection = ({ fieldName, label }) => (
                 </div>
 
                 {/* Product Images */}
-                <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-2xl shadow-md">
-                  <h3 className="text-lg font-bold text-purple-900 mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
+                <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-md">
+                  <h3 className="text-base sm:text-lg font-bold text-purple-900 mb-3 sm:mb-4 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-pink-500 rounded-full"></span>
                     Product Images
                   </h3>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     <ImageUploadSection fieldName="thumbnail" label="Thumbnail" />
                     <ImageUploadSection fieldName="image1" label="Image 1" />
                     <ImageUploadSection fieldName="image2" label="Image 2" />
@@ -903,15 +900,15 @@ const ImageUploadSection = ({ fieldName, label }) => (
             </div>
 
             {/* Footer Actions */}
-            <div className="bg-gradient-to-r from-purple-100 via-pink-100 to-purple-100 px-8 py-6 flex items-center justify-between gap-4 border-t-2 border-purple-200">
+            <div className="bg-gradient-to-r from-purple-100 via-pink-100 to-purple-100 px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 border-t-2 border-purple-200">
               <Link
                 to="/admin"
-                className="px-6 py-3 text-purple-600 font-bold hover:text-purple-800 transition-colors"
+                className="px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base text-purple-600 font-bold hover:text-purple-800 transition-colors w-full sm:w-auto text-center"
               >
                 ← Cancel
               </Link>
 
-              <div className="flex gap-3">
+              <div className="flex gap-2 sm:gap-3 w-full sm:w-auto">
                 {selectedProduct && !selectedProduct.deleted && (
                   <>
                     <button
@@ -919,14 +916,14 @@ const ImageUploadSection = ({ fieldName, label }) => (
                       onClick={() => {
                         setOpenModal("delete");
                       }}
-                      className="px-6 py-3 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-xl font-bold hover:from-red-600 hover:to-pink-600 transition-all duration-200 shadow-md hover:shadow-lg"
+                      className="flex-1 sm:flex-none px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-lg sm:rounded-xl font-bold hover:from-red-600 hover:to-pink-600 transition-all duration-200 shadow-md hover:shadow-lg"
                     >
                       🗑️ Delete
                     </button>
 
                     <button
                       type="submit"
-                      className="px-8 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 text-white rounded-xl font-bold hover:from-purple-600 hover:via-pink-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                      className="flex-1 sm:flex-none px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 text-white rounded-lg sm:rounded-xl font-bold hover:from-purple-600 hover:via-pink-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl whitespace-nowrap"
                     >
                       ✨ Update Product
                     </button>
@@ -935,7 +932,7 @@ const ImageUploadSection = ({ fieldName, label }) => (
                 {!selectedProduct && (
                   <button
                     type="submit"
-                    className="px-8 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 text-white rounded-xl font-bold hover:from-purple-600 hover:via-pink-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 text-white rounded-lg sm:rounded-xl font-bold hover:from-purple-600 hover:via-pink-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl whitespace-nowrap"
                   >
                     ✨ Save Product
                   </button>
