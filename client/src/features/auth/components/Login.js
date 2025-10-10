@@ -42,7 +42,7 @@ export default function Login() {
                 <img
                   className="h-16 w-auto mb-6"
                   src="../../../logo.png"
-                  alt="AmiFairy"
+                  alt="AmyFairy"
                 />
                 <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
                   Welcome Back
@@ -74,7 +74,7 @@ export default function Login() {
                 <img
                   className="h-12 w-auto mx-auto mb-3"
                   src="../../../logo.png"
-                  alt="AmiFairy"
+                  alt="AmyFairy"
                 />
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                   Welcome Back

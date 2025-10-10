@@ -1,0 +1,12 @@
+{
+  "name": "amyfairy",
+  "version": "1.0.0",
+  "description": "![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)\r ![Status](https://img.shields.io/badge/status-active-brightgreen?style=flat-square)\r ![React](https://img.shields.io/badge/React-18-blue?style=flat-square&logo=react)\r ![Node.js](https://img.shields.io/badge/Node.js-18-green?style=flat-square&logo=node.js)\r ![MongoDB](https://img.shields.io/badge/MongoDB-8.6-brightgreen?style=flat-square&logo=mongodb)\r ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?style=flat-square&logo=tailwindcss)\r ![Razorpay](https://img.shields.io/badge/Razorpay-Payments-blue?style=flat-square&logo=razorpay)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

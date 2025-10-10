@@ -46,10 +46,10 @@ export default function Signup() {
               <img
                 className="h-16 w-auto mb-6"
                 src="../../../logo.png"
-                alt="AmiFairy"
+                alt="AmyFairy"
               />
               <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
-                Welcome to AmiFairy
+                Welcome to AmyFairy
               </h1>
               <p className="text-lg text-gray-600 mb-6">
                 Your magical shopping destination for premium sarees and traditional wear.
@@ -78,7 +78,7 @@ export default function Signup() {
               <img
                 className="h-12 w-auto mx-auto mb-3"
                 src="../../../logo.png"
-                alt="AmiFairy"
+                alt="AmyFairy"
               />
               <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 Create Account

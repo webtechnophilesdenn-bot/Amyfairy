@@ -124,7 +124,7 @@ function Checkout() {
         key: razorpayID,
         amount: data.totalAmount,
         currency: "INR",
-        name: "AmiFairy",
+        name: "AmyFairy",
         description: "Thanks for shopping with us",
         image: "../../logo.png",
         order_id: paymentId,

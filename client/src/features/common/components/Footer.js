@@ -14,7 +14,7 @@ function Footer() {
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className="h-8 w-8 text-white" />
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                AmiFairy
+                AmyFairy
               </h2>
             </div>
             <p className="text-sm sm:text-base text-gray-400 mb-6 leading-relaxed">
@@ -160,10 +160,10 @@ function Footer() {
               <li className="flex items-start gap-3">
                 <HiMail className="h-5 w-5 sm:h-6 sm:w-6 text-white flex-shrink-0 mt-0.5" />
                 <a
-                  href="mailto:hello@amifairy.com"
+                  href="mailto:hello@AmyFairy.com"
                   className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors duration-200"
                 >
-                  hello@amifairy.com
+                  hello@AmyFairy.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -191,7 +191,7 @@ function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
-              © {new Date().getFullYear()} AmiFairy. All rights reserved. Crafted with ✨
+              © {new Date().getFullYear()} AmyFairy. All rights reserved. Crafted with ✨
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
               <a

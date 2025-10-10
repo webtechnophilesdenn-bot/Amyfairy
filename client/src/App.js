@@ -30,14 +30,13 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProductList from "./features/product/components/ProductList";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Protected>
-        <Home></Home>
-      </Protected>
+      <Home></Home>
     ),
   },
   {

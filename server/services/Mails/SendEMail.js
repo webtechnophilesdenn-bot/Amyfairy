@@ -12,7 +12,7 @@ export const sendEMail = async ({ to, subject, text, html }) => {
     });
 
     const info = await transporter.sendMail({
-      from: `"AmiFairy" <${process.env.EMAIL_ID}>'`, // sender address
+      from: `"AmyFairy" <${process.env.EMAIL_ID}>'`, // sender address
       to, // recipient address
       subject, // Subject line
       text, // plain text body
